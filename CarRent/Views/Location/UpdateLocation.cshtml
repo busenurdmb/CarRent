@@ -1,0 +1,34 @@
+﻿@model GetLocationByIdQueryResult
+@{
+    ViewData["Title"] = "UpdateLocation";
+    Layout = "~/Views/Layout/Index.cshtml";
+}
+
+
+
+
+<div class="container">
+    <div class="row">
+        <div class="col-md-12">
+            <h2 class="mb-4">Lokasyon Güncelle</h2>
+            <div class="card">
+                <div class="card-header">
+                    Yeni Lokasyon Güncelle
+                </div>
+                <div class="card-body">
+                    <form method="post">
+                        <input type="hidden" class="form-control" id="brand" asp-for="LocationID" required>
+                        <div class="form-group">
+                            <label for="model">Lokasyon:</label>
+                            <input type="text" class="form-control" id="model" asp-for="LocationName" required>
+                        </div>
+
+
+                        <button type="submit" class="btn btn-primary">Lokasyon Güncelle</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+

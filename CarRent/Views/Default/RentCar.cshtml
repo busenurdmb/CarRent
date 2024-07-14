@@ -1,0 +1,251 @@
+﻿@model List<CarRent.Features.Mediator.Results.CarResults.GetCarQueryResult>
+@{
+    Layout = null;
+}
+<!doctype html>
+<html lang="en">
+<head>
+    <title>CarRental</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+    <link rel="stylesheet" href="~/styles.css">
+    <link href="~/rentacar.css" rel="stylesheet" />
+    <style>
+        body {
+            font-family: 'Orbitron', sans-serif;
+            background-color: #f5f5f5;
+            color: #333;
+        }
+
+        
+    </style>
+</head>
+<body>
+    <div class="site-wrap" id="home-section">
+        <header class="site-navbar site-navbar-target" role="banner">
+            <div class="container">
+                <div class="row align-items-center position-relative">
+                    <div class="col-3">
+                        <div class="site-logo">
+                            <a href="/Default/Index"><strong>CarRental</strong></a>
+                        </div>
+                    </div>
+                    <div class="col-9 text-right">
+                        <nav class="site-navigation text-right ml-auto d-none d-lg-block" role="navigation">
+                            <ul class="site-menu main-menu js-clone-nav ml-auto d-flex justify-content-end" style="list-style: none; padding: 0;">
+                                <li class="nav-item active">
+                                    <a href="/Default/Index" class="nav-link">Ana Sayfa</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a href="/Default/RentCar" class="nav-link">Araba Kirala</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a href="/Car/CarList" class="nav-link">Admin Paneli</a>
+                                </li>
+                            </ul>
+                        </nav>
+                    </div>
+                </div>
+            </div>
+        </header>
+
+        <div class="hero inner-page" style="background-image: url('https://www.icegif.com/wp-content/uploads/car-icegif-6.gif');">
+            <div class="container">
+                <div class="row align-items-end">
+                    <div class="col-lg-5">
+                        <div class="intro">
+                            <h1><strong>Arabalar</strong></h1>
+                            <div class="custom-breadcrumbs"><a href="/Default/Index">Ana Sayfa</a> <span class="mx-2">/</span> <strong>Arabalar</strong></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="site-section bg-light">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-12">
+                        <h2 class="section-heading"><strong>Arabalar Listesi</strong></h2>
+                        <p class="mb-5">Farklı marka ve modellerdeki arabaların detaylı bir listesini bulabilirsiniz. Her araba hakkında kısa bilgiler, teknik özellikler ve kullanıcı yorumları yer almaktadır.</p>
+                    </div>
+                </div>
+                @if (ViewBag.warning != null)
+                {
+                    <div class="alert alert-warning alert-dismissible" role="alert">
+                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                            <span aria-hidden="true">X</span>
+                        </button>
+                        <h6><i class="fas fa-exclamation-triangle"></i><b> Bilgi!</b></h6>
+                        @ViewBag.warning
+                    </div>
+                   @*  <div class="alert alert-warning">@ViewBag.warning</div> *@
+                }
+                @if (ViewBag.success != null)
+                {
+                    <div class="row mb-5">
+                        <div class="col-12">
+                            <div class="alert alert-light alert-dismissible" role="alert">
+                                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                    <span aria-hidden="true">Uyarıyı kapat</span>
+                                </button>
+                                <h6><i class="fas fa-exclamation-triangle"></i><b> Bilgi!</b></h6>
+                                @ViewBag.success
+                            </div>
+                           @*  <div class="alert alert-success mb-3">@ViewBag.success</div> *@
+                        </div>
+                    </div>
+                }
+                <div class="row">
+                    @foreach (var item in Model)
+                    {
+                        <div class="col-md-6 col-lg-4 mb-4">
+                            <div class="listing d-block align-items-stretch">
+                                <div class="listing-img h-100 mr-4">
+                                    <img src="@item.ImageUrl" style="height:200px;" alt="Image" class="img-fluid w-100">
+                                </div>
+                                <div class="listing-contents h-100">
+                                    <h3>@item.CarBrand @item.Model</h3>
+                                    <div class="rent-price">
+                                        <strong>@item.Price ₺</strong><span class="mx-1">/</span>Günlük
+                                    </div>
+                                    <div class="d-block d-md-flex mb-3 border-bottom pb-3">
+                                        <div class="listing-feature pr-4">
+                                            <span class="caption">Vites Türü:</span>
+                                            <span class="number">@item.Transmission</span>
+                                        </div>
+                                        <div class="listing-feature pr-4">
+                                            <span class="caption">Yakıt:</span>
+                                            <span class="number">@item.FuelType</span>
+                                        </div>
+                                        <div class="listing-feature pr-4">
+                                            <span class="caption">Yolcu:</span>
+                                            <span class="number">@item.Seats</span>
+                                        </div>
+                                    </div>
+                                    <div>
+                                        <p>@item.Year</p>
+                                        <p class="text-primary" style="cursor:pointer;" data-toggle="modal" data-target="#Modal1-@item.CarID">Tüm özellikleri görüntüle</p>
+                                        <p><a href="#" class="btn btn-primary btn-sm">Hemen Kirala</a> </p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- Modal -->
+                        <div class="modal fade" id="Modal1-@item.CarID" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                            <div class="modal-dialog" role="document">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h5 class="modal-title" id="exampleModalLabel">@item.CarBrand @item.Model</h5>
+                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                            <span aria-hidden="true">&times;</span>
+                                        </button>
+                                    </div>
+                                    <div class="modal-body">
+                                        <img src="@item.ImageUrl" class="w-100 mb-3" style="height:300px;" />
+                                        <div class="card">
+                                            <div class="card-header">Araç Özellikleri</div>
+                                            <div class="card-body p-3">
+                                                <p><span style="font-weight:500">Renk:</span> @item.Color</p>
+                                                <p><span style="font-weight:500">Yıl:</span> @item.Year</p>
+                                                <p><span style="font-weight:500">Vites Türü:</span> @item.Transmission</p>
+                                                <p><span style="font-weight:500">Yakıt:</span> @item.FuelType</p>
+                                                <p><span style="font-weight:500">Koltuk:</span> @item.Seats</p>
+                                                <p><span style="font-weight:500">Kapı:</span> @item.Doors</p>
+                                                <p><span style="font-weight:500">Bagaj Hacmi:</span> @item.LuggageCapacity</p>
+                                                <p><span style="font-weight:500">Yolcu:</span> @item.Seats</p>
+                                                @* <p><span style="font-weight:500">Açıklama:</span> @item.Description</p> *@
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Kapat</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- Modal End -->
+                    }
+                </div>
+            </div>
+        </div>
+
+        <footer class="site-footer">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-3">
+                        <h2 class="footer-heading mb-4">Hakkımızda</h2>
+                        <p>Uzak bir ülkede, Vokalia ve Consonantia ülkelerinden uzakta, kör metinler yaşar.</p>
+                        <ul class="list-unstyled social">
+                            <li><a href="#"><span class="icon-facebook"></span></a></li>
+                            <li><a href="#"><span class="icon-instagram"></span></a></li>
+                            <li><a href="#"><span class="icon-twitter"></span></a></li>
+                            <li><a href="#"><span class="icon-linkedin"></span></a></li>
+                        </ul>
+                    </div>
+                    <div class="col-lg-8 ml-auto">
+                        <div class="row">
+                            <div class="col-lg-3">
+                                <h2 class="footer-heading mb-4">Hızlı Linkler</h2>
+                                <ul class="list-unstyled">
+                                    <li><a href="#">Hakkımızda</a></li>
+                                    <li><a href="#">Referanslar</a></li>
+                                    <li><a href="#">Hizmet Şartları</a></li>
+                                    <li><a href="#">Gizlilik</a></li>
+                                    <li><a href="#">Bize Ulaşın</a></li>
+                                </ul>
+                            </div>
+                            <div class="col-lg-3">
+                                <h2 class="footer-heading mb-4">Kaynaklar</h2>
+                                <ul class="list-unstyled">
+                                    <li><a href="#">Hakkımızda</a></li>
+                                    <li><a href="#">Referanslar</a></li>
+                                    <li><a href="#">Hizmet Şartları</a></li>
+                                    <li><a href="#">Gizlilik</a></li>
+                                    <li><a href="#">Bize Ulaşın</a></li>
+                                </ul>
+                            </div>
+                            <div class="col-lg-3">
+                                <h2 class="footer-heading mb-4">Destek</h2>
+                                <ul class="list-unstyled">
+                                    <li><a href="#">Hakkımızda</a></li>
+                                    <li><a href="#">Referanslar</a></li>
+                                    <li><a href="#">Hizmet Şartları</a></li>
+                                    <li><a href="#">Gizlilik</a></li>
+                                    <li><a href="#">Bize Ulaşın</a></li>
+                                </ul>
+                            </div>
+                            <div class="col-lg-3">
+                                <h2 class="footer-heading mb-4">Şirket</h2>
+                                <ul class="list-unstyled">
+                                    <li><a href="#">Hakkımızda</a></li>
+                                    <li><a href="#">Referanslar</a></li>
+                                    <li><a href="#">Hizmet Şartları</a></li>
+                                    <li><a href="#">Gizlilik</a></li>
+                                    <li><a href="#">Bize Ulaşın</a></li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row pt-5 mt-5 text-center">
+                    <div class="col-md-12">
+                        <div class="border-top pt-5">
+                            <p>
+                                <!-- Colorlib credit link can't be removed. Template is licensed under CC BY 3.0. -->
+                                Telif Hakkı &copy;<script>document.write(new Date().getFullYear());</script> Tüm hakları saklıdır | Bu şablon <i class="icon-heart text-danger" aria-hidden="true"></i> ile yapılmıştır | <a href="https://colorlib.com" target="_blank">Colorlib</a> tarafından.
+                                <!-- Colorlib credit link can't be removed. Template is licensed under CC BY 3.0. -->
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </footer>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

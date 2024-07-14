@@ -1,0 +1,144 @@
+﻿@model GetFilterCarDto 
+@{
+    Layout = null;
+}
+
+<!doctype html>
+<html lang="en">
+
+<head>
+    <title>DMB CarRental</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+    <link rel="stylesheet" href="~/styles.css"> <!-- Harici CSS dosyası -->
+
+    <style>
+        body {
+            font-family: 'Orbitron', sans-serif;
+            background-color: #f5f5f5;
+            color: #333;
+        }
+        .site-logo {
+            position: relative;
+            display: inline-block;
+        }
+
+        .site-logo span {
+            position: absolute;
+            animation: moveLetters 2s linear infinite;
+        }
+
+        
+        @@keyframes moveLetters {
+            0% {
+                left: -10px;
+                opacity: 0;
+            }
+            50% {
+                opacity: 1;
+            }
+            100% {
+                left: 10px;
+                opacity: 0;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="site-wrap" id="home-section">
+        <header class="site-navbar site-navbar-target" role="banner">
+            <div class="container">
+                <div class="row align-items-center position-relative">
+                    <div class="col-3">
+                        <div class="site-logo">
+                            <a href="/Default/Index"><strong>DMB CarRental</strong></a>
+                        </div>
+                    </div>
+                    <div class="col-9 text-right">
+                        <nav class="site-navigation text-right ml-auto d-none d-lg-block" role="navigation">
+                            <ul class="site-menu main-menu js-clone-nav ml-auto d-flex justify-content-end" style="list-style: none; padding: 0;">
+                                <li class="nav-item active">
+                                    <a href="/Default/Index" class="nav-link">Ana Sayfa</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a href="/Default/RentCar" class="nav-link">Araba Kirala</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a href="/Car/CarList" class="nav-link">Admin Paneli</a>
+                                </li>
+                            </ul>
+                        </nav>
+                    </div>
+
+
+                </div>
+            </div>
+        </header>
+
+        <div class="hero">
+            <div class="container">
+                <div class="row align-items-center justify-content-center">
+                    <div class="col-lg-12">
+                        <h1><strong>DMB CarRental</strong> ile araba kiralamanın kolay yolu.</h1>
+                        <form class="trip-form" method="post">
+                            <div asp-validation-summary="ModelOnly" class="alert alert-danger"></div>
+                            <div class="form-row">
+                                <div class="form-group col-md-3">
+                                    <label for="take-location">Teslim Alacağınız Lokasyon</label>
+                                    @Html.DropDownListFor(x => x.PickUpLocationID, (List<SelectListItem>)ViewBag.PickUpLocation, "Teslim Alacağınız Lokasyonu Seçiniz", new { @class = "custom-select form-control" })
+                                </div>
+                                <div class="form-group col-md-3">
+                                    <label for="drop-location">Teslim Edeceğiniz Lokasyon</label>
+                                  @*   @Html.DropDownListFor(x => x.DropOffLocationID, (List<SelectListItem>)ViewBag.DropOffLocation, "Teslim Edeceğiniz Lokasyonu Seçiniz", new { @class = "custom-select form-control" }) *@
+
+                                    <select id="drop-location" class="custom-select form-control" asp-for="DropOffLocationID">
+                                        <option value=" ">Teslim Edeceğiniz Lokasyonu Seçiniz</option>
+                                        <!-- Options -->
+                                        @foreach (var item in ViewBag.DropOffLocation)
+                                        {
+                                            <option  value="@item.Value">@item.Text</option>
+                                        }
+                                    </select>
+                                </div>
+                            
+
+                                <div class="form-group col-md-3">
+                                    <label for="pick-up-date">Alış Tarihi</label>
+                                    <input type="datetime-local" id="pick-up-date" asp-for="PickUpDate" class="form-control">
+                                </div>
+                                <div class="form-group col-md-3">
+                                    <label for="drop-off-date">Teslim Tarihi</label>
+                                    <input type="datetime-local" id="drop-off-date" asp-for="DropOffDate" class="form-control">
+                                </div>
+                                <div class="form-group col-md-12 d-flex justify-content-end">
+                                    <button type="submit" class="btn mr-3">Araç Ara</button>
+                                    <a href="/Default/RentCar" class="btn btn-outline-primary">Araçları Listele</a>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <footer class="site-footer">
+            <div class="container">
+                <div class="row pt-5 mt-5 text-center">
+                    <div class="col-md-12">
+                        <div class="border-top pt-5">
+                            <p>&copy;<script>document.write(new Date().getFullYear());</script> DMB CarRental. All rights reserved.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </footer>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+</body>
+
+</html>

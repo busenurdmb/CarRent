@@ -1,0 +1,56 @@
+﻿@model List<GetBrandQueryResult>
+@{
+    ViewData["Title"] = "BrandList";
+    Layout = "~/Views/Layout/Index.cshtml";
+}
+
+
+
+
+
+<div class="container">
+    <div class="row">
+        <div class="col-md-12">
+            <h2 class="mb-4">Markalar</h2>
+            <div class="card">
+                <div class="card-header d-flex justify-content-between align-items-center">
+                    <span>Marka Listesi</span>
+                    <a href="/Brand/Create" class="btn btn-info">Yeni Marka Ekle</a>
+                </div>
+                <div class="card-body">
+                    <div class="table-responsive">
+                        <table class="table table-bordered">
+                            <thead>
+                                <tr>
+                                    <th>ID</th>
+                                    <th>Marka</th>
+                                    <th>Güncelle</th>
+                                    <th>Sil</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach (var item in Model)
+                                {
+                                    <tr>
+                                        <td class="col-md-2">@item.BrandID</td>
+                                        <td class="col-md-6">@item.BrandName</td>
+                                        
+                                        <td class="col-md-2">
+                                            <a href="/Brand/UpdateBrand/@item.BrandID" class="btn btn-primary">Güncelle</a>
+                                            </td>
+                                        <td class="col-md-2">
+                                            <a href="/Brand/RemoveBrand/@item.BrandID" class="btn btn-danger ml-2">Sil</a>
+                                        </td>
+                                    </tr>
+                                }
+
+
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+

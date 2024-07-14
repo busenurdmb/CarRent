@@ -1,0 +1,77 @@
+﻿@model GetCarByIdQueryResult
+@{
+    ViewData["Title"] = "UpdateCar";
+    Layout = "~/Views/Layout/Index.cshtml";
+}
+
+
+
+
+<div class="container">
+    <div class="row">
+        <div class="col-md-12">
+            <h2 class="mb-4">Araba Paneli</h2>
+            <div class="card">
+                <div class="card-header">
+                    Araba Güncelle
+                </div>
+                <div class="card-body">
+                    <form method="post">
+                        <input type="hidden" class="form-control" id="brand" asp-for="CarID" required>
+                        <div class="form-group">
+                            <label for="brand">Marka:</label>
+                            @Html.DropDownListFor(x => x.BrandID, (SelectList)ViewBag.Brand, "Marka Seçiniz..", new { @class = "form-control" })
+                        </div>
+                        <div class="form-group">
+                            <label for="model">Model:</label>
+                            <input type="text" class="form-control" id="model" asp-for="Model" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="year">Yıl:</label>
+                            <input type="number" class="form-control" id="year" asp-for="Year" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="color">Renk:</label>
+                            <input type="text" class="form-control" id="color" asp-for="Color" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="fuelType">Yakıt Türü:</label>
+                            <input type="text" class="form-control" id="fuelType" asp-for="FuelType">
+                        </div>
+                        <div class="form-group">
+                            <label for="transmission">Şanzıman Türü:</label>
+                            <input type="text" class="form-control" id="transmission" asp-for="Transmission">
+                        </div>
+                        <div class="form-group">
+                            <label for="seats">Koltuk Sayısı:</label>
+                            <input type="number" class="form-control" id="seats" asp-for="Seats">
+                        </div>
+                        <div class="form-group">
+                            <label for="doors">Kapı Sayısı:</label>
+                            <input type="number" class="form-control" id="doors" asp-for="Doors">
+                        </div>
+                        <div class="form-group">
+                            <label for="luggageCapacity">Bagaj Kapasitesi (litre):</label>
+                            <input type="number" class="form-control" id="luggageCapacity" asp-for="LuggageCapacity">
+                        </div>
+                        <div class="form-group">
+                            <label for="price">Fiyat:</label>
+                            <input type="text" step="0.01" class="form-control" id="price" asp-for="Price">
+                        </div>
+                        <div class="form-group">
+                            <label for="imageUrl">Resim URL:</label>
+                            <input type="text" class="form-control" id="imageUrl" asp-for="ImageUrl">
+                        </div>
+                        <div class="form-group">
+                            <label for="location">Konum ID:</label>
+                            @Html.DropDownListFor(x => x.LocationID, (SelectList)ViewBag.Location, "Lokasyonu Seçiniz", new { @class = "form-control" })
+
+                        </div>
+                        <button type="submit" class="btn btn-primary">Araba Güncelle</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+

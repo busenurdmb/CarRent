@@ -1,0 +1,58 @@
+﻿@model List<GetReservationQueryResult>
+@{
+    ViewData["Title"] = "ReservationList";
+    Layout = "~/Views/Layout/Index.cshtml";
+}
+ <div class="container"> 
+    <div class="row">
+        <div class="col-md-12">
+            <h2 class="mb-4">Rezervasyonlar</h2>
+            <div class="card">
+                <div class="card-header d-flex justify-content-between align-items-center">
+                    <span>Rezervasyon Listesi</span>
+                   @*  <a href="/Car/Create" class="btn btn-info">Yeni Rezervasyon Ekle</a> *@
+                </div>
+                <div class="card-body">
+                    <div class="table-responsive">
+                        <table class="table table-bordered">
+                            <thead>
+                                <tr>
+                                    <th>ID</th>
+                                    <th>Rezervasyon</th>
+                                    <th>Resim</th>
+                                    <th>Alış Lokasyonu</th>
+                                    <th>Teslim  Lokasyonu</th>
+                                    <th>Alış Tarihi</th>
+                                    <th>Teslim  Tarihi</th>
+                                 
+                                    <th>Actions</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach (var item in Model)
+                                {
+                                    <tr>
+                                        <td>@item.ReservationID</td>
+                                        <td><img src="@item.ImageUrl" style="width:150px;height:100px;"></td>
+                                        <td>@item.Carname</td>
+                                        <td>@item.PickUpLocation</td>
+                                        <td>@item.DropOffLocation</td>
+                                        <td>@item.PickUpDate</td>
+                                        <td>@item.DropOffDate</td>
+                                        <td>
+                                            @* <a href="/Car/UpdateCar/@item.CarID" class="btn btn-primary">Güncelle</a> *@
+                                            <a href="/Car/RemoveCar/@item.CarID" class="btn btn-danger ml-2">Sil</a>
+                                        </td>
+                                    </tr>
+                                }
+
+
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+ </div> 
+

@@ -1,0 +1,79 @@
+﻿/* styles.css */
+
+.site-wrap {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+.hero {
+    background-image: url('https://www.icegif.com/wp-content/uploads/car-icegif-6.gif');
+    background-size: cover;
+    background-position: center;
+    padding: 5rem 0;
+}
+
+    .hero h1 {
+        font-size: 3rem;
+        text-align: center;
+        text-shadow: 0 0 20px rgba(255, 0, 0, 0.7);
+        color: #fff;
+        animation: blink 1s infinite;
+    }
+
+.trip-form {
+    margin-top: 2rem;
+    background-color: rgba(255, 255, 255, 0.9);
+    padding: 1rem;
+    border-radius: 10px;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+}
+
+    .trip-form label {
+        font-size: 1rem;
+        color: #2c3e50;
+    }
+
+    .trip-form input,
+    .trip-form select {
+        background-color: #fff;
+        color: #2c3e50;
+        border: 1px solid #ced4da;
+    }
+
+    .trip-form button {
+        background-color: #2c3e50;
+        color: #fff;
+        border: none;
+        padding: 0.5rem 1rem;
+        font-size: 1rem;
+        cursor: pointer;
+    }
+
+        .trip-form button:hover {
+            background-color: #34495e;
+        }
+
+.btn-outline-primary {
+    color: #2c3e50;
+    border-color: #2c3e50;
+}
+
+    .btn-outline-primary:hover {
+        background-color: #2c3e50;
+        color: #fff;
+    }
+
+@keyframes blink {
+    0% {
+        opacity: 1;
+    }
+
+    50% {
+        opacity: 0;
+    }
+
+    100% {
+        opacity: 1;
+    }
+}

@@ -1,0 +1,33 @@
+﻿@model GetBrandByIdQueryResult
+@{
+    ViewData["Title"] = "UpdateBrand";
+    Layout = "~/Views/Layout/Index.cshtml";
+}
+
+
+
+<div class="container">
+    <div class="row">
+        <div class="col-md-12">
+            <h2 class="mb-4">Marka Güncelle</h2>
+            <div class="card">
+                <div class="card-header">
+                    Yeni Marka Güncelle
+                </div>
+                <div class="card-body">
+                    <form method="post">
+                        <input type="hidden" class="form-control" id="brand" asp-for="BrandID" required>
+                        <div class="form-group">
+                            <label for="model">Marka:</label>
+                            <input type="text" class="form-control" id="model" asp-for="BrandName" required>
+                        </div>
+
+
+                        <button type="submit" class="btn btn-primary">Marka Güncelle</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+

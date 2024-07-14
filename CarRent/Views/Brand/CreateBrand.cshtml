@@ -1,0 +1,30 @@
+﻿@model CreateBrandCommand
+@{
+    ViewData["Title"] = "CreateBrand";
+    Layout = "~/Views/Layout/Index.cshtml";
+}
+<div class="container">
+    <div class="row">
+        <div class="col-md-12">
+            <h2 class="mb-4">Marka Ekle</h2>
+            <div class="card">
+                <div class="card-header">
+                    Yeni Marka Ekle
+                </div>
+                <div class="card-body">
+                    <form method="post">
+                     
+                        <div class="form-group">
+                            <label for="model">Marka:</label>
+                            <input type="text" class="form-control" id="model" asp-for="BrandName" required>
+                        </div>
+                     
+                     
+                        <button type="submit" class="btn btn-primary">Marka Ekle</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
